@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvictoryscr001"]
+[gd_scene load_steps=8 format=3 uid="uid://bemnfy4afxrfc"]
 
 [ext_resource type="Script" path="res://scenes/ui/victory_screen.gd" id="1_victory"]
+[ext_resource type="Texture2D" uid="uid://c87ph4o8cfdjy" path="res://sprites/collectibles.png" id="2_coins"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0"]
+atlas = ExtResource("2_coins")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1"]
+atlas = ExtResource("2_coins")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2"]
+atlas = ExtResource("2_coins")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3"]
+atlas = ExtResource("2_coins")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_coin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 8.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.07, 0.09, 0.14, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.86, 0.35, 0.7)
+content_margin_left = 14
+content_margin_top = 12
+content_margin_right = 14
+content_margin_bottom = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
 
 [node name="VictoryScreen" type="CanvasLayer"]
 layer = 20
@@ -22,44 +74,79 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
-color = Color(0.05, 0.08, 0.12, 0.65)
+color = Color(0.03, 0.05, 0.09, 0.72)
 
-[node name="Panel" type="VBoxContainer" parent="Root"]
+[node name="Panel" type="PanelContainer" parent="Root"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -48.0
-offset_right = 70.0
-offset_bottom = 48.0
+offset_left = -78.0
+offset_top = -56.0
+offset_right = 78.0
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Content" type="VBoxContainer" parent="Root/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Title" type="Label" parent="Root/Panel"]
+[node name="Title" type="Label" parent="Root/Panel/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.92, 0.45, 1)
-theme_override_colors/font_outline_color = Color(0.1, 0.08, 0.05, 1)
-theme_override_constants/outline_size = 3
-theme_override_font_sizes/font_size = 14
+theme_override_colors/font_shadow_color = Color(0.05, 0.04, 0.02, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 16
 text = "Vitória!"
 horizontal_alignment = 1
 
-[node name="CoinsLabel" type="Label" parent="Root/Panel"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_colors/font_outline_color = Color(0.1, 0.08, 0.05, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 10
-text = "Moedas: 0"
-horizontal_alignment = 1
+[node name="CoinRow" type="HBoxContainer" parent="Root/Panel"]
+visible = false
+layout_mode = 0
 
-[node name="RetryButton" type="Button" parent="Root/Panel"]
-custom_minimum_size = Vector2(0, 22)
+[node name="IconSlot" type="Control" parent="Root/Panel/CoinRow"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+
+[node name="CoinIcon" type="AnimatedSprite2D" parent="Root/Panel/CoinRow/IconSlot"]
+sprite_frames = SubResource("SpriteFrames_coin")
+animation = &"spin"
+
+[node name="CoinsLabel" type="Label" parent="Root/Panel/CoinRow"]
+layout_mode = 2
+text = "00"
+
+[node name="CoinRow" type="Control" parent="Root/Panel/Content"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="CoinIcon" type="AnimatedSprite2D" parent="Root/Panel/Content/CoinRow"]
+position = Vector2(52, 9)
+sprite_frames = SubResource("SpriteFrames_coin")
+animation = &"spin"
+autoplay = "spin"
+
+[node name="CoinsLabel" type="Label" parent="Root/Panel/Content/CoinRow"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 0.0
+offset_right = 100.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(1, 0.94, 0.55, 1)
+theme_override_colors/font_shadow_color = Color(0.05, 0.04, 0.02, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "00"
+vertical_alignment = 1
+
+[node name="RetryButton" type="Button" parent="Root/Panel/Content"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
 text = "Jogar de novo"

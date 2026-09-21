@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhudcoins0001"]
+[gd_scene load_steps=8 format=3 uid="uid://bhudcoins0001"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://c87ph4o8cfdjy" path="res://sprites/collectibles.png" id="2_coins"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0"]
+atlas = ExtResource("2_coins")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1"]
+atlas = ExtResource("2_coins")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2"]
+atlas = ExtResource("2_coins")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3"]
+atlas = ExtResource("2_coins")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_coin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 8.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+bg_color = Color(0.06, 0.08, 0.12, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.86, 0.35, 0.45)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 2
+shadow_offset = Vector2(0, 1)
 
 [node name="HUD" type="CanvasLayer"]
 layer = 10
@@ -15,14 +67,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="CoinsLabel" type="Label" parent="Root"]
+[node name="CoinBar" type="Control" parent="Root"]
 layout_mode = 0
-offset_left = 8.0
-offset_top = 6.0
-offset_right = 72.0
-offset_bottom = 22.0
-theme_override_colors/font_color = Color(1, 0.95, 0.55, 1)
-theme_override_colors/font_outline_color = Color(0.1, 0.08, 0.05, 1)
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 10
-text = "x0"
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 58.0
+offset_bottom = 25.0
+pivot_offset = Vector2(26, 10)
+mouse_filter = 2
+
+[node name="Bg" type="Panel" parent="Root/CoinBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="CoinIcon" type="AnimatedSprite2D" parent="Root/CoinBar"]
+position = Vector2(12, 10)
+sprite_frames = SubResource("SpriteFrames_coin")
+animation = &"spin"
+autoplay = "spin"
+
+[node name="CoinsLabel" type="Label" parent="Root/CoinBar"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1.0
+offset_right = 50.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(1, 0.94, 0.55, 1)
+theme_override_colors/font_shadow_color = Color(0.04, 0.03, 0.02, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 11
+text = "00"
+vertical_alignment = 1
