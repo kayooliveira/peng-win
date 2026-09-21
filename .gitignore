@@ -1,0 +1,20 @@
+# Godot 4+
+.godot/
+/android/
+
+# OS / editor
+.DS_Store
+*~
+*.swp
+*.tmp
+
+# Exports / secrets
+export.cfg
+export_credentials.cfg
+*.env
+.env*
+
+# Ziva agent runtime binaries (huge CEF/native builds)
+addons/ziva_agent/bin/
+addons/ziva_agent/bin-deps/
+addons/ziva_agent/zivacode/

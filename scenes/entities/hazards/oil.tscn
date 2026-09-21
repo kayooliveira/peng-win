@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bpebgjjywr8ut"]
+
+[ext_resource type="Script" path="res://scenes/entities/hazards/hazard.gd" id="1_l1oul"]
+[ext_resource type="Texture2D" uid="uid://f2cryp5dmyhi" path="res://sprites/5 - Misc. universal tiles/Bubbling_Oil_frames (16 x 32).png" id="2_l1oul"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urqn6"]
+atlas = ExtResource("2_l1oul")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnvxi"]
+atlas = ExtResource("2_l1oul")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcqex"]
+atlas = ExtResource("2_l1oul")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cuv2"]
+atlas = ExtResource("2_l1oul")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3i60"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urqn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnvxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcqex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cuv2")
+}],
+"loop": 1,
+"name": &"bubbling oil",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3i60"]
+size = Vector2(16, 8)
+
+[node name="Oil" type="StaticBody2D" unique_id=251549528]
+z_index = -1
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=374577526]
+sprite_frames = SubResource("SpriteFrames_s3i60")
+animation = &"bubbling oil"
+autoplay = "bubbling oil"
+frame_progress = 0.43137443
+
+[node name="Area" type="Area2D" parent="." unique_id=309633247]
+script = ExtResource("1_l1oul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area" unique_id=68423250]
+shape = SubResource("RectangleShape2D_s3i60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2028526073]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_s3i60")

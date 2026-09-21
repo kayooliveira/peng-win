@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqf1n15hz0ne1"]
+
+[ext_resource type="Script" path="res://scenes/entities/interactables/finish.gd" id="1_finish"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_finish"]
+size = Vector2(24, 48)
+
+[node name="Finish" type="Area2D"]
+script = ExtResource("1_finish")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_finish")

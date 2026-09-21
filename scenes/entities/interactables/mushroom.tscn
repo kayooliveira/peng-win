@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bqfdffcnuqejy"]
+
+[ext_resource type="Script" path="res://scenes/entities/interactables/mushroom.gd" id="1_0bdi0"]
+[ext_resource type="Texture2D" uid="uid://b0dd8bxlysghc" path="res://sprites/custom_pack.png" id="2_qxrkd"]
+[ext_resource type="AudioStream" uid="uid://g2ogc0mwvmrb" path="res://sfx/bounce.wav" id="3_qxrkd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cxdl2"]
+radius = 10.125841
+
+[node name="mushroom" type="Area2D" unique_id=173604857]
+script = ExtResource("1_0bdi0")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=624309234]
+position = Vector2(0, -8)
+texture = ExtResource("2_qxrkd")
+region_enabled = true
+region_rect = Rect2(192, 128, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1259282994]
+position = Vector2(1.0000006, -19)
+rotation = 0.23212878
+skew = 1.1030481
+shape = SubResource("CircleShape2D_cxdl2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=686169774]
+stream = ExtResource("3_qxrkd")
+volume_db = 1.0

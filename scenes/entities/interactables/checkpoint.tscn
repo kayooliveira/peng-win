@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://b8qq87ei3316u"]
+
+[ext_resource type="Script" path="res://scenes/entities/interactables/checkpoint.gd" id="1_dkjbd"]
+[ext_resource type="Texture2D" uid="uid://hudrtquglc58" path="res://sprites/1 - Grassland/Grassland_entities (16 x 16).png" id="2_tonx6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3i60"]
+size = Vector2(20, 212)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3i60"]
+atlas = ExtResource("2_tonx6")
+region = Rect2(48, 80, 16, 16)
+
+[node name="Checkpoint01" type="Area2D" unique_id=1183949841]
+script = ExtResource("1_dkjbd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068365484]
+position = Vector2(0, -96)
+shape = SubResource("RectangleShape2D_s3i60")
+
+[node name="RespawnPoint" type="Marker2D" parent="." unique_id=262668458]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1807751130]
+z_index = 2
+position = Vector2(0, 2)
+texture = SubResource("AtlasTexture_s3i60")

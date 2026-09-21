@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bpbhpxg5161r3"]
+
+[ext_resource type="Script" path="res://scenes/entities/hazards/hazard.gd" id="1_7j8fp"]
+[ext_resource type="Texture2D" uid="uid://b0dd8bxlysghc" path="res://sprites/custom_pack.png" id="2_fj6h0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5njw7"]
+atlas = ExtResource("2_fj6h0")
+region = Rect2(176, 144, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3i60"]
+size = Vector2(16, 13)
+
+[node name="SpikeInverted" type="Area2D" unique_id=497689962]
+position = Vector2(0, -2)
+rotation = -3.1415927
+script = ExtResource("1_7j8fp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1345597851]
+texture = SubResource("AtlasTexture_5njw7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=68423250]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_s3i60")
