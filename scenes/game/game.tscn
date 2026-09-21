@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d2kfaah87ggau" path="res://scenes/player/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://ct7r0rv2lx8w0" path="res://scenes/levels/grassland/phase_1/phase_1.tscn" id="2_yqjtg"]
 [ext_resource type="AudioStream" uid="uid://51enopeh6680" path="res://sfx/main_theme.mp3" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bhudcoins0001" path="res://scenes/ui/hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" uid="uid://bvictoryscr001" path="res://scenes/ui/victory_screen.tscn" id="7_victory"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
@@ -18,3 +20,7 @@ stream = ExtResource("5_iywne")
 volume_db = -12.837
 autoplay = true
 parameters/looping = true
+
+[node name="HUD" parent="." instance=ExtResource("6_hud")]
+
+[node name="VictoryScreen" parent="." instance=ExtResource("7_victory")]

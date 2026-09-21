@@ -31,6 +31,9 @@ enum PlayerState {
 @export var coins := 0
 @export var lifes := 5
 
+signal coins_changed(amount: int)
+signal level_completed(coins: int)
+
 var state := PlayerState.IDLE
 var has_jumped := false
 
@@ -214,6 +217,15 @@ func start_iframes(duration: float = IFRAME_DURATION) -> void:
 
 func shake_camera(amount: float = 3.0) -> void:
 	shake_strength = maxf(shake_strength, amount)
+
+
+func add_coin(amount: int = 1) -> void:
+	coins += amount
+	coins_changed.emit(coins)
+
+
+func complete_level() -> void:
+	level_completed.emit(coins)
 
 
 func die() -> void:

@@ -18,7 +18,10 @@ func _on_body_entered(body: Node2D) -> void:
 	available = false
 	collision_shape.set_deferred("disabled", true)
 
-	body.coins += 1
+	if body.has_method("add_coin"):
+		body.add_coin()
+	else:
+		body.coins += 1
 
 	sfx.pitch_scale = randf_range(0.7, 1.0)
 	sfx.play()
